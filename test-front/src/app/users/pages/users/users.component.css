@@ -1,0 +1,10 @@
+.user-online {
+  color: #17ff09;
+}
+.user-offline {
+  color: #ff0c00;
+}
+.last-seen {
+  font-size: 12px;
+  color: grey
+}

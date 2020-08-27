@@ -1,0 +1,15 @@
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-nav-list *ngIf="users">
+      <mat-list-item *ngFor="let user of users" (click)="navigateToUser(user.id)">
+        <mat-icon matListIcon [ngClass]="user.status === 'online' ? 'user-online' : 'user-offline'">fiber_manual_record
+        </mat-icon>
+        {{user.username}}&nbsp;<span *ngIf="user.status === 'offline'" class="last-seen">(last seen at {{user.lastSeen | date : 'h:mm a, M/d/yy'}})</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <router-outlet></router-outlet>
+  </mat-grid-tile>
+</mat-grid-list>

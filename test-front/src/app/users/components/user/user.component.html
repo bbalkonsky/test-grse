@@ -1,0 +1,36 @@
+<div *ngIf="user$ | async as user">
+  <p>Полное имя пользователя:</p>
+  <div *ngIf="!isRedacting; else editUserForm">
+    <p><b>{{user.full_name}}</b></p>
+    <p>
+      <button mat-button (click)="editUser()">
+        <mat-icon>settings</mat-icon>
+      </button>
+      Изменить
+    </p>
+  </div>
+
+  <ng-template #editUserForm>
+    <mat-form-field class="example-form-field">
+      <input matInput type="text" [(ngModel)]="user.full_name">
+      <button mat-button *ngIf="user.full_name && isRedacting" matSuffix mat-icon-button aria-label="Clear"
+              (click)="user.full_name=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <p>
+      <button mat-button (click)="saveUser(user.id, user.full_name)">
+        <mat-icon>save</mat-icon>
+      </button>
+      Сохранить
+    </p>
+  </ng-template>
+
+  <p>
+    <button mat-button (click)="cancelEdit()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    {{isRedacting ? 'Отмена' : 'Назад'}}
+  </p>
+</div>
